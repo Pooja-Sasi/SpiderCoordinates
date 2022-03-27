@@ -1,0 +1,55 @@
+﻿@model SpiderCoordinates.Models.SpiderCoordinatesViewModel
+
+
+
+<h1>Spider Coordinates</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Index">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MatrixCoordinates" class="control-label"></label>
+                <input asp-for="MatrixCoordinates" class="form-control" />
+                <span asp-validation-for="MatrixCoordinates" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartingPoint" class="control-label"></label>
+                <input asp-for="StartingPoint" class="form-control" />
+                <span asp-validation-for="StartingPoint" class="text-danger"></span>
+            </div>
+            
+           
+            <div class="form-group">
+                <label asp-for="Direction" class="control-label"></label>
+                <input asp-for="Direction" class="form-control" />
+                <span asp-validation-for="Direction" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+     <div class="col-md-6">
+          <div class="form-group">
+            @Html.Label("Size of Matrix: ")@ViewBag.MatrixSize 
+            
+       </div>
+         <div class="form-group">
+            @Html.Label("Path to be followed: ")  @ViewBag.PathtobeFollowed  
+        
+
+        </div>
+        <div class="form-group">
+            @Html.Label("Final Coordinates: ") @ViewBag.finalCoordinates  
+            
+
+        </div>
+
+</div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
