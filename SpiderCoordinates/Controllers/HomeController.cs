@@ -16,6 +16,11 @@ namespace SpiderCoordinates.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// Default Controller and Method-for Spider coordinates
+        /// </summary>
+        /// <param name="spiderCoordinatesViewModel"></param>
+        /// <returns></returns>
         public IActionResult Index(SpiderCoordinatesViewModel spiderCoordinatesViewModel)
         {
             try
@@ -72,6 +77,7 @@ namespace SpiderCoordinates.Controllers
                 var spider_face = spiderCoordinatesViewModel.StartingPoint.Split(",")[2];
                 string spider_path = spiderCoordinatesViewModel.Direction;
 
+                //** Setting Face of spider with degrees 0-Up;90-right,180-down 270-Left
                 var degree = 0;
                 if (spider_face == "left")
                 {
@@ -91,6 +97,8 @@ namespace SpiderCoordinates.Controllers
                 }
                 char[] chars = spider_path.ToCharArray();
 
+
+                //** Looping through each path to be followed if F-then onse step ahead, if L/R then change degree
                 for (int ctr = 0; ctr < chars.Length; ctr++)
                 {
                     string move = chars[ctr].ToString();
