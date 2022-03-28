@@ -36,6 +36,13 @@ namespace SpiderCoordinatesTest
             Direction = "ABC"
 
         };
+        private readonly SpiderCoordinatesViewModel _PathOutofMatrixRequest = new SpiderCoordinatesViewModel()
+        {
+            MatrixCoordinates = "5,5",
+            StartingPoint = "5,5,L",
+            Direction = "FFLLRRR"
+
+        };
         public SpiderCoordinatesTest()
         {
             mockHomeControllerLogger = new Mock<ILogger<HomeController>>();
@@ -46,6 +53,8 @@ namespace SpiderCoordinatesTest
         }
 
         [Test]
+        [Description(
+          @" Given request has valid  inputs")]
         public void CheckValidRequest()
         {
             // Arrange
@@ -58,6 +67,8 @@ namespace SpiderCoordinatesTest
 
         }
         [Test]
+        [Description(
+          @" Given request has invalid Direction inputs")]
         public  void CheckInValidDirectionRequest()
         {
             // Arrange
@@ -70,6 +81,8 @@ namespace SpiderCoordinatesTest
             Assert.AreEqual("3,3,up", finalCoordinates);
         }
         [Test]
+        [Description(
+          @" Given request has invalid inputs")]
         public void CheckInValidRequest()
         {
             // Arrange
@@ -80,6 +93,21 @@ namespace SpiderCoordinatesTest
             // Assert
 
             Assert.IsNull(finalCoordinates);
+        }
+
+        [Test]
+        [Description(
+          @" Given request has values with Path Out of Matrix")]
+        public void CheckPathOutofMatrixRequest()
+        {
+            // Arrange
+            HomeController controller = new HomeController(
+                mockHomeControllerLogger.Object
+                );
+            string finalCoordinates = controller.GetSpiderCoordinatesValue(_PathOutofMatrixRequest);
+            // Assert
+
+            Assert.AreEqual(finalCoordinates,"Path Out of Matrix");
         }
 
         [Test]
